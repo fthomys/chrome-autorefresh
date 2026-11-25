@@ -36,8 +36,7 @@ async function mutate<T>(fn: (timers: Timers) => Promise<T> | T): Promise<T> {
   });
 }
 
-// chrome.alarms won't fire sooner than 30s, so intervals below that rely on setTimeout.
-// The alarm stays as a backstop in case the worker was shut down in between.
+// Alarms fire no sooner than 30s, so setTimeout drives short intervals and the alarm is the backstop.
 const handles = new Map<number, ReturnType<typeof setTimeout>>();
 
 function arm(t: TabTimer): void {
@@ -203,7 +202,7 @@ async function checkForChange(tabId: number): Promise<void> {
 
 let tickHandle: ReturnType<typeof setTimeout> | undefined;
 
-// Minutes are enough until the last minute, so the worker only stays busy per second then.
+// Per-second updates only in the last minute, so the worker can sleep otherwise.
 async function tick(): Promise<void> {
   clearTimeout(tickHandle);
   const timers = Object.values(await getTimers());
@@ -336,7 +335,7 @@ chrome.notifications.onClicked.addListener((id) => {
 chrome.runtime.onInstalled.addListener(() => void syncWithRules());
 chrome.runtime.onStartup.addListener(() => void syncWithRules());
 
-// The worker may have been restarted: put back the in-memory timeouts.
+// Timeouts don't survive a worker restart.
 void getTimers().then((timers) => {
   for (const t of Object.values(timers)) if (t.status === 'running') arm(t);
   void tick();

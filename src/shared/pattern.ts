@@ -3,7 +3,6 @@ export interface ParsedPattern {
   host: string;
   port: string | null;
   path: string;
-  /** Match pattern handed to chrome.permissions. */
   origin: string;
 }
 
@@ -13,7 +12,6 @@ export type PatternResult = { ok: true; pattern: ParsedPattern } | { ok: false; 
 
 const HOST_RE = /^(\*|(?:\*\.)?[a-z0-9-]+(?:\.[a-z0-9-]+)*)(?::(\d{1,5}))?$/i;
 
-/** Accepts `example.com`, `*.example.com/tickets/*`, `https://example.com:8080/a?b=*`. */
 export function parsePattern(raw: string): PatternResult {
   const input = raw.trim();
   if (!input) return { ok: false, error: 'empty' };
@@ -72,7 +70,7 @@ export function matchesUrl(p: ParsedPattern, url: string): boolean {
   return globToRegExp(p.path).test(u.pathname + u.search);
 }
 
-/** Origin pattern for a page URL, or null when Chrome won't grant host access to it. */
+// Null for pages Chrome never grants host access to (chrome://, Web Store).
 export function originForUrl(url: string | undefined | null): string | null {
   if (!url) return null;
   try {

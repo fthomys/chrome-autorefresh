@@ -58,10 +58,8 @@ function switchRow(id: string, label: string) {
 
 export interface ConfigForm {
   el: HTMLElement;
-  /** Validates and shows errors; returns null when something is invalid. */
   read(): TimerConfig | null;
   write(c: TimerConfig): void;
-  /** Current values for display, without validating. */
   peek(): TimerConfig;
   onChange(cb: () => void): void;
 }

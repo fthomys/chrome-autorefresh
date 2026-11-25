@@ -29,8 +29,7 @@ export interface Rule {
   config: TimerConfig;
 }
 
-// Running timers live in session storage so they survive service worker restarts
-// but not a browser restart (tab ids don't survive one either).
+// Session storage: survives worker restarts, not browser restarts (tab ids don't either).
 export async function getTimers(): Promise<Timers> {
   const { timers } = await chrome.storage.session.get('timers');
   return (timers as Timers | undefined) ?? {};
@@ -40,7 +39,7 @@ export function setTimers(timers: Timers): Promise<void> {
   return chrome.storage.session.set({ timers });
 }
 
-/** Tabs where the user stopped a rule-started timer; rules leave them alone until closed. */
+// Tabs where the user stopped a rule timer; rules skip them until the tab closes.
 export async function getSuppressed(): Promise<number[]> {
   const { suppressed } = await chrome.storage.session.get('suppressed');
   return (suppressed as number[] | undefined) ?? [];

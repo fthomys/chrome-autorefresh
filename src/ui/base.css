@@ -23,7 +23,7 @@ html {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Set on body: Chrome's extension page stylesheet puts system-ui and 75% there. */
+/* Chrome's extension stylesheet sets system-ui and 75% on body. */
 body {
   font-family: var(--font);
   font-size: 14px;
@@ -106,8 +106,6 @@ input:is([type='checkbox'], [type='radio']):not(:disabled),
   fill: currentColor;
 }
 
-/* Buttons */
-
 .btn {
   --bg: transparent;
   --fg: var(--md-sys-color-primary);
@@ -183,8 +181,6 @@ input:is([type='checkbox'], [type='radio']):not(:disabled),
 .icon-btn:active {
   background: color-mix(in srgb, var(--fg) var(--state-press), var(--bg));
 }
-
-/* Form */
 
 .config-form {
   display: grid;
@@ -270,7 +266,6 @@ legend {
   font-weight: 550;
 }
 
-/* M3 Expressive connected button group: the selected item rounds fully. */
 .segmented {
   display: flex;
   gap: 2px;
@@ -335,8 +330,6 @@ legend {
   pointer-events: none;
 }
 
-/* M3 switch */
-
 .switch-row {
   display: flex;
   align-items: center;
@@ -399,8 +392,6 @@ legend {
   left: 18px;
 }
 
-/* Notices */
-
 .notice {
   display: flex;
   align-items: flex-start;
@@ -436,8 +427,6 @@ legend {
 .notice-error .icon {
   color: var(--md-sys-color-error);
 }
-
-/* Dialog */
 
 dialog {
   width: min(560px, calc(100% - 32px));

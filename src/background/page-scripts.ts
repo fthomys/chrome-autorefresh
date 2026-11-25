@@ -1,13 +1,8 @@
-// These run inside the page via chrome.scripting.executeScript, which serializes
-// the function source. They must stay self-contained: no imports, no outer variables.
-// All calls share the extension's isolated world, so state on `window` persists between them.
+// executeScript serializes these: no imports or outer variables. State on `window` persists between calls.
 
 type EditWindow = { __autorefreshEdits?: Map<Element, string> };
 
-/**
- * Remembers fields the user really typed into. Pages that fill in values by script
- * (tracking numbers, search boxes) don't fire trusted input events, so they don't count.
- */
+// Values a page sets by script fire no trusted input events, so only real typing counts.
 export function watchInput(): void {
   const w = window as unknown as EditWindow;
   if (w.__autorefreshEdits) return;
@@ -23,7 +18,7 @@ export function watchInput(): void {
   };
   const target = (e: Event) => e.composedPath()[0] as Element;
 
-  // The timer may start after the user already typed into the focused field.
+  // The user may have typed before the timer started.
   const focused = document.activeElement;
   if (focused instanceof HTMLInputElement || focused instanceof HTMLTextAreaElement) {
     if (focused.value !== focused.defaultValue) edits.set(focused, focused.defaultValue);
@@ -55,7 +50,6 @@ export function watchInput(): void {
   );
 }
 
-/** True when a field the user edited still differs from its value before editing. */
 export function hasUnsavedInput(): boolean {
   const edits = (window as unknown as EditWindow).__autorefreshEdits;
   if (!edits) return false;

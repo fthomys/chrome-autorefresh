@@ -94,7 +94,6 @@ section > h2 + .rows {
   color: var(--md-sys-color-on-surface-variant);
 }
 
-/* Remaining time repeats the popup's countdown voice. */
 .remaining {
   font-variant-numeric: tabular-nums;
   font-weight: 700;

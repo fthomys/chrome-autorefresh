@@ -1,5 +1,4 @@
-// Generates src/ui/tokens.css and src/shared/palette.ts from one seed color.
-// Run with `npm run tokens` after changing SEED.
+// Run `npm run tokens` after changing SEED.
 import { writeFileSync } from 'node:fs';
 import {
   Hct,
@@ -30,7 +29,6 @@ function scheme(isDark) {
   return Object.fromEntries(ROLES.map((r) => [r, hexFromArgb(colors[r]().getArgb(s))]));
 }
 
-// Damped spring sampled into a CSS linear() easing.
 function spring(damping, stiffness) {
   const w0 = Math.sqrt(stiffness);
   const wd = w0 * Math.sqrt(1 - damping * damping);
@@ -49,7 +47,7 @@ const light = scheme(false);
 const dark = scheme(true);
 const block = (s) => Object.entries(s).map(([k, v]) => `  --md-sys-color-${kebab(k)}: ${v};`).join('\n');
 
-// M3 Expressive standard springs (default spatial, fast spatial, fast effects).
+// M3 Expressive standard spring tokens.
 const springs = {
   'spatial-default': spring(0.9, 700),
   'spatial-fast': spring(0.9, 1400),

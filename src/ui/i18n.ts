@@ -4,7 +4,6 @@ export function t(key: string, subs?: string | string[]): string {
   return chrome.i18n.getMessage(key, subs) || key;
 }
 
-/** Fills `data-i18n`, `data-i18n-aria-label` and `data-i18n-title` attributes. */
 export function localize(root: ParentNode = document): void {
   document.documentElement.lang = t('langCode');
   for (const el of root.querySelectorAll<HTMLElement>('[data-i18n]')) el.textContent = t(el.dataset.i18n!);
