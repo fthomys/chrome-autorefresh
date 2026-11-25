@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title data-i18n="optionsTitle">Autorefresh settings</title>
+    <script type="module" src="/src/options/main.ts"></script>
+  </head>
+  <body>
+    <header class="masthead">
+      <h1 data-i18n="optionsHeading">Autorefresh</h1>
+    </header>
+    <main>
+      <p id="load-error" class="page-error" role="alert" hidden></p>
+
+      <section aria-labelledby="running-heading">
+        <h2 id="running-heading" data-i18n="runningHeading"></h2>
+        <ul id="running" class="rows" aria-busy="true">
+          <li class="row-empty" data-i18n="loading"></li>
+        </ul>
+      </section>
+
+      <section aria-labelledby="rules-heading">
+        <div class="section-head">
+          <h2 id="rules-heading" data-i18n="rulesHeading"></h2>
+          <button id="add-rule" type="button" class="btn btn-tonal"></button>
+        </div>
+        <p class="section-intro" data-i18n="rulesIntro"></p>
+        <ul id="rules" class="rows" aria-busy="true">
+          <li class="row-empty" data-i18n="loading"></li>
+        </ul>
+      </section>
+
+      <section aria-labelledby="defaults-heading">
+        <div class="section-head">
+          <h2 id="defaults-heading" data-i18n="defaultsHeading"></h2>
+          <p id="defaults-status" class="saved" role="status"></p>
+        </div>
+        <p class="section-intro" data-i18n="defaultsIntro"></p>
+        <form id="defaults" class="defaults" novalidate></form>
+      </section>
+    </main>
+
+    <dialog id="rule-dialog" aria-labelledby="rule-dialog-title">
+      <form id="rule-form" method="dialog" novalidate>
+        <h2 id="rule-dialog-title"></h2>
+        <div class="stack">
+          <label class="field" for="rule-pattern">
+            <span class="field-label" data-i18n="fieldPattern"></span>
+            <input id="rule-pattern" type="text" spellcheck="false" autocomplete="off" aria-describedby="rule-pattern-hint" />
+          </label>
+          <p id="rule-pattern-hint" class="field-hint" data-i18n="fieldPatternHint"></p>
+          <p id="rule-pattern-error" class="field-error" hidden></p>
+        </div>
+        <div id="rule-config" class="rule-config"></div>
+        <div class="dialog-actions">
+          <button type="button" class="btn btn-text" id="rule-cancel" data-i18n="cancel"></button>
+          <button type="submit" class="btn btn-filled" id="rule-save" data-i18n="saveRule"></button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="delete-dialog" aria-labelledby="delete-dialog-title" aria-describedby="delete-dialog-body">
+      <h2 id="delete-dialog-title" data-i18n="confirmDeleteTitle"></h2>
+      <p id="delete-dialog-body"></p>
+      <div class="dialog-actions">
+        <button type="button" class="btn btn-text" id="delete-cancel" data-i18n="cancel"></button>
+        <button type="button" class="btn btn-danger" id="delete-confirm" data-i18n="delete"></button>
+      </div>
+    </dialog>
+  </body>
+</html>

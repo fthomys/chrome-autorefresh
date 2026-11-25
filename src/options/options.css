@@ -1,0 +1,140 @@
+body {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 40px 24px 64px;
+}
+
+.masthead h1 {
+  font-size: 36px;
+  line-height: 44px;
+  font-weight: 350;
+  letter-spacing: -0.5px;
+}
+
+main {
+  display: grid;
+  gap: 48px;
+  margin-top: 32px;
+}
+
+h2 {
+  font-size: 22px;
+  line-height: 28px;
+  font-weight: 500;
+}
+
+.section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  min-height: var(--target);
+}
+
+.section-intro {
+  margin-top: 4px;
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+section > h2 + .rows {
+  margin-top: 12px;
+}
+
+.section-intro + .rows,
+.section-intro + .defaults {
+  margin-top: 16px;
+}
+
+.rows {
+  border-top: 1px solid var(--md-sys-color-outline-variant);
+}
+
+.rows > li {
+  border-bottom: 1px solid var(--md-sys-color-outline-variant);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 4px 16px;
+  padding: 12px 0;
+}
+
+.row-main {
+  min-width: 0;
+}
+
+.row-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.row-meta {
+  color: var(--md-sys-color-on-surface-variant);
+  overflow-wrap: anywhere;
+}
+
+.row-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.row > .notice {
+  grid-column: 1 / -1;
+}
+
+.row-empty {
+  padding: 16px 0;
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+/* Remaining time repeats the popup's countdown voice. */
+.remaining {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  color: var(--md-sys-color-primary);
+}
+
+.pattern {
+  font-weight: 500;
+}
+
+.defaults {
+  max-width: 420px;
+}
+
+.saved {
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+.page-error {
+  padding: 12px 16px;
+  border-radius: var(--shape-m);
+  background: var(--md-sys-color-error-container);
+  color: var(--md-sys-color-on-error-container);
+}
+
+.rule-config {
+  margin-top: 24px;
+}
+
+@media (max-width: 520px) {
+  body {
+    padding: 24px 16px 48px;
+  }
+
+  .row {
+    grid-template-columns: 1fr;
+  }
+
+  .row-actions {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+}

@@ -1,0 +1,110 @@
+body {
+  width: 360px;
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 8px 0 20px;
+}
+
+.page {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+}
+
+/* The countdown is the focal point: weight carries the state, light when idle, heavy when running. */
+.clock {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  column-gap: 16px;
+  padding: 4px 20px 20px;
+}
+
+.countdown {
+  font-size: 64px;
+  line-height: 72px;
+  letter-spacing: -1.5px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 250;
+  white-space: nowrap;
+  color: var(--md-sys-color-on-surface-variant);
+  transition: font-weight var(--md-sys-motion-spatial-default-duration) var(--md-sys-motion-spatial-default);
+}
+
+.countdown.is-range {
+  font-size: 40px;
+  letter-spacing: -0.5px;
+}
+
+.clock[data-state='running'] .countdown {
+  font-weight: 700;
+  color: var(--md-sys-color-primary);
+}
+
+.caption {
+  grid-column: 1 / -1;
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+/* Identity motif: idle is a full pill, running morphs into a squarer shape. */
+.toggle {
+  --bg: var(--md-sys-color-on-surface);
+  --fg: var(--md-sys-color-surface);
+  min-width: 104px;
+  height: 56px;
+  padding: 0 24px;
+  border: 0;
+  border-radius: 28px;
+  background: var(--bg);
+  color: var(--fg);
+  font-size: 16px;
+  font-weight: 600;
+  transition: border-radius var(--md-sys-motion-spatial-default-duration) var(--md-sys-motion-spatial-default);
+}
+
+.toggle:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--fg) var(--state-hover), var(--bg));
+}
+
+.toggle:active:not(:disabled) {
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--fg) var(--state-press), var(--bg));
+}
+
+.toggle:disabled {
+  opacity: 0.5;
+}
+
+.clock[data-state='running'] .toggle {
+  --bg: var(--md-sys-color-primary-container);
+  --fg: var(--md-sys-color-on-primary-container);
+  border-radius: var(--shape-l);
+}
+
+.clock[data-state='running'] .toggle:active:not(:disabled) {
+  border-radius: 28px;
+}
+
+.notices {
+  display: grid;
+  gap: 8px;
+  padding: 0 12px;
+}
+
+.notices:not(:empty) {
+  padding-bottom: 16px;
+}
+
+.panel {
+  padding: 20px;
+  border-top: 1px solid var(--md-sys-color-outline-variant);
+}

@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title data-i18n="popupTitle">Autorefresh</title>
+    <script type="module" src="/src/popup/main.ts"></script>
+  </head>
+  <body>
+    <header class="bar">
+      <h1 id="page" class="page"></h1>
+      <a href="options.html" id="open-options" class="icon-btn" data-i18n-aria-label="openSettings" data-i18n-title="openSettings"></a>
+    </header>
+    <main>
+      <section class="clock" id="clock" data-state="loading">
+        <p id="countdown" class="countdown" role="timer" aria-live="off" data-i18n-aria-label="countdownLabel"></p>
+        <button id="toggle" class="toggle" type="button" disabled></button>
+        <p id="caption" class="caption" aria-live="polite" data-i18n="loading"></p>
+      </section>
+      <div id="notices" class="notices" aria-live="polite"></div>
+      <form id="form" class="panel" novalidate></form>
+    </main>
+  </body>
+</html>

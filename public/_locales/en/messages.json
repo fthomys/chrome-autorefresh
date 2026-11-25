@@ -1,0 +1,370 @@
+{
+  "langCode": {
+    "message": "en"
+  },
+  "extName": {
+    "message": "Autorefresh"
+  },
+  "extDescription": {
+    "message": "Reloads tabs on a timer, waits while you're typing, and tells you when a page changes."
+  },
+  "actionTitle": {
+    "message": "Autorefresh"
+  },
+  "popupTitle": {
+    "message": "Autorefresh"
+  },
+  "optionsTitle": {
+    "message": "Autorefresh settings"
+  },
+  "optionsHeading": {
+    "message": "Autorefresh"
+  },
+  "openSettings": {
+    "message": "Settings"
+  },
+  "loading": {
+    "message": "Loading"
+  },
+  "thisPage": {
+    "message": "This page"
+  },
+  "countdownLabel": {
+    "message": "Time until the next reload"
+  },
+  "startReloading": {
+    "message": "Start"
+  },
+  "stopReloading": {
+    "message": "Stop"
+  },
+  "startAgain": {
+    "message": "Start again"
+  },
+  "captionIdle": {
+    "message": "Not reloading this tab"
+  },
+  "captionNext": {
+    "message": "Next reload at $TIME$",
+    "placeholders": {
+      "time": {
+        "content": "$1"
+      }
+    }
+  },
+  "captionStopped": {
+    "message": "Stopped at $TIME$ because the page changed",
+    "placeholders": {
+      "time": {
+        "content": "$1"
+      }
+    }
+  },
+  "intervalLegend": {
+    "message": "Reload interval"
+  },
+  "modeLabel": {
+    "message": "Interval type"
+  },
+  "modeFixed": {
+    "message": "Fixed"
+  },
+  "modeRandom": {
+    "message": "Random"
+  },
+  "fieldEvery": {
+    "message": "Every"
+  },
+  "fieldMin": {
+    "message": "At least"
+  },
+  "fieldMax": {
+    "message": "At most"
+  },
+  "fieldUnit": {
+    "message": "Unit"
+  },
+  "unitS": {
+    "message": "seconds"
+  },
+  "unitM": {
+    "message": "minutes"
+  },
+  "unitH": {
+    "message": "hours"
+  },
+  "errNotANumber": {
+    "message": "Enter a whole number."
+  },
+  "errTooShort": {
+    "message": "Use 5 seconds or more."
+  },
+  "errTooLong": {
+    "message": "Use 24 hours or less."
+  },
+  "errMinMax": {
+    "message": "The first value has to be lower than the second."
+  },
+  "detectLegend": {
+    "message": "Change detection"
+  },
+  "detectEnabled": {
+    "message": "Notify me when the page changes"
+  },
+  "detectSelector": {
+    "message": "Only watch this part (optional)"
+  },
+  "detectSelectorHint": {
+    "message": "A CSS selector, like #price. Leave it empty to watch the whole page."
+  },
+  "errSelector": {
+    "message": "This isn't a valid CSS selector."
+  },
+  "detectStop": {
+    "message": "Stop reloading after a change"
+  },
+  "noticeProtected": {
+    "message": "Chrome doesn't let extensions read this page. Reloading works, but the typing check and change detection are off."
+  },
+  "noticeNoAccess": {
+    "message": "Without access to $HOST$, Autorefresh can't tell if you're typing and can't spot changes.",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "allowAccess": {
+    "message": "Allow access to $HOST$",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "noticeSkipped": {
+    "message": "Skipped the reload at $TIME$ because the page has unsaved input.",
+    "placeholders": {
+      "time": {
+        "content": "$1"
+      }
+    }
+  },
+  "noticeChanged": {
+    "message": "The page changed at $TIME$.",
+    "placeholders": {
+      "time": {
+        "content": "$1"
+      }
+    }
+  },
+  "noticeSelectorMissing": {
+    "message": "Nothing on the page matches $SELECTOR$. Change detection waits until something does.",
+    "placeholders": {
+      "selector": {
+        "content": "$1"
+      }
+    }
+  },
+  "noticeBackgroundError": {
+    "message": "Autorefresh didn't respond. Close this popup and open it again."
+  },
+  "noticeNoTab": {
+    "message": "There's no tab to reload here."
+  },
+  "notifyChangedTitle": {
+    "message": "A page you're watching changed"
+  },
+  "notifyStoppedTitle": {
+    "message": "A page changed, so reloading stopped"
+  },
+  "durS": {
+    "message": "$N$ s",
+    "placeholders": {
+      "n": {
+        "content": "$1"
+      }
+    }
+  },
+  "durM": {
+    "message": "$N$ min",
+    "placeholders": {
+      "n": {
+        "content": "$1"
+      }
+    }
+  },
+  "durH": {
+    "message": "$N$ h",
+    "placeholders": {
+      "n": {
+        "content": "$1"
+      }
+    }
+  },
+  "everyDuration": {
+    "message": "Every $DURATION$",
+    "placeholders": {
+      "duration": {
+        "content": "$1"
+      }
+    }
+  },
+  "randomDuration": {
+    "message": "Random, $MIN$ to $MAX$",
+    "placeholders": {
+      "min": {
+        "content": "$1"
+      },
+      "max": {
+        "content": "$2"
+      }
+    }
+  },
+  "detectSummaryPage": {
+    "message": "notifies on any change"
+  },
+  "detectSummarySelector": {
+    "message": "notifies when $SELECTOR$ changes",
+    "placeholders": {
+      "selector": {
+        "content": "$1"
+      }
+    }
+  },
+  "detectSummaryStops": {
+    "message": "stops after a change"
+  },
+  "runningHeading": {
+    "message": "Reloading now"
+  },
+  "runningEmpty": {
+    "message": "No tab is reloading right now. Start one from the toolbar button, or add a rule below."
+  },
+  "runningNext": {
+    "message": "Next reload in"
+  },
+  "runningStopped": {
+    "message": "Stopped after a change"
+  },
+  "goToTab": {
+    "message": "Go to tab"
+  },
+  "stop": {
+    "message": "Stop"
+  },
+  "rulesHeading": {
+    "message": "Rules"
+  },
+  "rulesIntro": {
+    "message": "A rule starts reloading on its own whenever a tab opens a matching page."
+  },
+  "rulesEmpty": {
+    "message": "No rules yet."
+  },
+  "addRule": {
+    "message": "Add rule"
+  },
+  "ruleEnabled": {
+    "message": "Rule for $PATTERN$ is on",
+    "placeholders": {
+      "pattern": {
+        "content": "$1"
+      }
+    }
+  },
+  "ruleOff": {
+    "message": "Off"
+  },
+  "editRule": {
+    "message": "Edit rule for $PATTERN$",
+    "placeholders": {
+      "pattern": {
+        "content": "$1"
+      }
+    }
+  },
+  "editRuleShort": {
+    "message": "Edit"
+  },
+  "deleteRule": {
+    "message": "Delete rule for $PATTERN$",
+    "placeholders": {
+      "pattern": {
+        "content": "$1"
+      }
+    }
+  },
+  "ruleNoAccess": {
+    "message": "Autorefresh has no access to $HOST$, so this rule can't start.",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "dialogAddTitle": {
+    "message": "New rule"
+  },
+  "dialogEditTitle": {
+    "message": "Edit rule"
+  },
+  "fieldPattern": {
+    "message": "Pages"
+  },
+  "fieldPatternHint": {
+    "message": "A domain or URL. * matches anything. Examples: example.com, *.example.com/tickets/*"
+  },
+  "errPatternEmpty": {
+    "message": "Enter a domain or URL."
+  },
+  "errPatternScheme": {
+    "message": "Only http and https pages can be matched."
+  },
+  "errPatternHost": {
+    "message": "Check the domain. A * only works at the start, like *.example.com."
+  },
+  "errPatternPath": {
+    "message": "Spaces and # aren't allowed in the path."
+  },
+  "errPermissionDenied": {
+    "message": "Chrome didn't grant access to $HOST$. The rule needs it to run.",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "cancel": {
+    "message": "Cancel"
+  },
+  "saveRule": {
+    "message": "Save rule"
+  },
+  "confirmDeleteTitle": {
+    "message": "Delete this rule?"
+  },
+  "confirmDeleteBody": {
+    "message": "Tabs reloading because of $PATTERN$ will stop.",
+    "placeholders": {
+      "pattern": {
+        "content": "$1"
+      }
+    }
+  },
+  "delete": {
+    "message": "Delete"
+  },
+  "defaultsHeading": {
+    "message": "Defaults"
+  },
+  "defaultsIntro": {
+    "message": "Used when you start reloading from the toolbar button."
+  },
+  "saved": {
+    "message": "Saved"
+  },
+  "loadError": {
+    "message": "Couldn't load your settings. Reload this page to try again."
+  }
+}
