@@ -16,6 +16,6 @@ Load `dist/` via `chrome://extensions` with Developer mode on, then "Load unpack
 ## Notes
 
 - Colors come from one seed in `scripts/tokens.mjs`. Run `npm run tokens` after changing it.
-- The icons in `public/icons/` are placeholders (grey square with an X). Replace them before publishing.
+- `public/icons/` holds PNG renders of `design/icon.svg` at 16, 32, 48 and 128px. Re-render them after changing the SVG.
 - Only `public/_locales/en/messages.json` is edited by hand. Other languages come from Crowdin.
 - Intervals under 30 seconds run on a `setTimeout` in the service worker, with a `chrome.alarms` backstop, because alarms don't fire sooner than 30s.

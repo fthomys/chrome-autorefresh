@@ -1,6 +1,7 @@
 :root {
   --font: 'Roboto Flex Variable', system-ui, sans-serif;
   --shape-xs: 4px;
+  --shape-s: 8px;
   --shape-m: 12px;
   --shape-l: 16px;
   --shape-xl: 28px;
@@ -282,7 +283,7 @@ legend {
   place-items: center;
   min-height: var(--target);
   padding: 0 16px;
-  border-radius: var(--shape-xs);
+  border-radius: var(--shape-s);
   background: var(--md-sys-color-surface-container-highest);
   color: var(--md-sys-color-on-surface-variant);
   font-weight: 550;
@@ -290,11 +291,11 @@ legend {
 }
 
 .segmented label:first-child {
-  border-radius: var(--shape-full) var(--shape-xs) var(--shape-xs) var(--shape-full);
+  border-radius: var(--shape-full) var(--shape-s) var(--shape-s) var(--shape-full);
 }
 
 .segmented label:last-child {
-  border-radius: var(--shape-xs) var(--shape-full) var(--shape-full) var(--shape-xs);
+  border-radius: var(--shape-s) var(--shape-full) var(--shape-full) var(--shape-s);
 }
 
 .segmented label:hover {

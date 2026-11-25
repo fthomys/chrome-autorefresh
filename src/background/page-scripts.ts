@@ -1,21 +1,71 @@
 // These run inside the page via chrome.scripting.executeScript, which serializes
 // the function source. They must stay self-contained: no imports, no outer variables.
+// All calls share the extension's isolated world, so state on `window` persists between them.
 
+type EditWindow = { __autorefreshEdits?: Map<Element, string> };
+
+/**
+ * Remembers fields the user really typed into. Pages that fill in values by script
+ * (tracking numbers, search boxes) don't fire trusted input events, so they don't count.
+ */
+export function watchInput(): void {
+  const w = window as unknown as EditWindow;
+  if (w.__autorefreshEdits) return;
+  const edits = new Map<Element, string>();
+  const originals = new Map<Element, string>();
+  w.__autorefreshEdits = edits;
+
+  const valueOf = (el: Element): string | null => {
+    if (el instanceof HTMLInputElement) return el.type === 'checkbox' || el.type === 'radio' ? String(el.checked) : el.value;
+    if (el instanceof HTMLTextAreaElement || el instanceof HTMLSelectElement) return el.value;
+    if (el instanceof HTMLElement && el.isContentEditable) return el.textContent ?? '';
+    return null;
+  };
+  const target = (e: Event) => e.composedPath()[0] as Element;
+
+  // The timer may start after the user already typed into the focused field.
+  const focused = document.activeElement;
+  if (focused instanceof HTMLInputElement || focused instanceof HTMLTextAreaElement) {
+    if (focused.value !== focused.defaultValue) edits.set(focused, focused.defaultValue);
+  }
+
+  document.addEventListener(
+    'focusin',
+    (e) => {
+      const el = target(e);
+      const v = e.isTrusted ? valueOf(el) : null;
+      if (v !== null && !originals.has(el)) originals.set(el, v);
+    },
+    true,
+  );
+  const onEdit = (e: Event) => {
+    const el = target(e);
+    if (!e.isTrusted || edits.has(el)) return;
+    const original = originals.get(el);
+    if (original !== undefined) edits.set(el, original);
+  };
+  document.addEventListener('input', onEdit, true);
+  document.addEventListener('change', onEdit, true);
+  document.addEventListener(
+    'submit',
+    (e) => {
+      for (const el of [...edits.keys()]) if ((e.target as Element).contains(el)) edits.delete(el);
+    },
+    true,
+  );
+}
+
+/** True when a field the user edited still differs from its value before editing. */
 export function hasUnsavedInput(): boolean {
-  // A focused but empty field (autofocused search boxes) is not typing; edited values are.
-  if ((document.activeElement as HTMLElement | null)?.isContentEditable) return true;
-  for (const el of Array.from(document.querySelectorAll('input, textarea, select'))) {
-    if (el instanceof HTMLInputElement) {
-      if (el.type === 'checkbox' || el.type === 'radio') {
-        if (el.checked !== el.defaultChecked) return true;
-      } else if (el.type !== 'hidden' && el.type !== 'file' && el.value !== el.defaultValue) {
-        return true;
-      }
-    } else if (el instanceof HTMLTextAreaElement) {
-      if (el.value !== el.defaultValue) return true;
-    } else if (el instanceof HTMLSelectElement) {
-      if (Array.from(el.options).some((o) => o.selected !== o.defaultSelected)) return true;
-    }
+  const edits = (window as unknown as EditWindow).__autorefreshEdits;
+  if (!edits) return false;
+  for (const [el, original] of edits) {
+    if (!el.isConnected) continue;
+    let now: string;
+    if (el instanceof HTMLInputElement) now = el.type === 'checkbox' || el.type === 'radio' ? String(el.checked) : el.value;
+    else if (el instanceof HTMLTextAreaElement || el instanceof HTMLSelectElement) now = el.value;
+    else now = el.textContent ?? '';
+    if (now !== original) return true;
   }
   return false;
 }

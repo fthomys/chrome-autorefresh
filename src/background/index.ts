@@ -13,7 +13,7 @@ import {
   type TabTimer,
   type Timers,
 } from '../shared/storage';
-import { hasUnsavedInput, snapshotPage, type Snapshot } from './page-scripts';
+import { hasUnsavedInput, snapshotPage, watchInput, type Snapshot } from './page-scripts';
 
 // Gives late-rendering pages a moment before comparing content.
 const SETTLE_MS = 2000;
@@ -88,6 +88,7 @@ async function start(tabId: number, config: TimerConfig, url: string | null, tit
     timers[tabId] = t;
   });
   arm(t);
+  await runInTab(tabId, watchInput);
   if (config.detect.enabled) await captureBaseline(tabId);
   await tick();
 }
@@ -191,7 +192,7 @@ async function checkForChange(tabId: number): Promise<void> {
     const host = changed.url ? new URL(changed.url).hostname : '';
     chrome.notifications.create(`changed:${tabId}:${Date.now()}`, {
       type: 'basic',
-      iconUrl: 'icons/placeholder-128.png',
+      iconUrl: 'icons/icon-128.png',
       title: chrome.i18n.getMessage(changed.status === 'stoppedOnChange' ? 'notifyStoppedTitle' : 'notifyChangedTitle'),
       message: changed.title || host,
       contextMessage: host,
@@ -294,6 +295,7 @@ chrome.tabs.onUpdated.addListener((tabId, info, tab) => {
         timers[tabId].title = tab.title ?? null;
       });
     }
+    await runInTab(tabId, watchInput);
     if (t.awaitingCheck) setTimeout(() => void checkForChange(tabId), SETTLE_MS);
     await tick();
   })();
