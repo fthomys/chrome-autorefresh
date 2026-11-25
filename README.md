@@ -22,3 +22,7 @@ Load `dist/` via `chrome://extensions` with Developer mode on, then "Load unpack
 - Intervals under 30 seconds run on a `setTimeout` in the service worker, with a `chrome.alarms` backstop, because alarms don't fire sooner than 30s.
 - The privacy policy is `PRIVACY.md`.
 - Bump `version` in both `package.json` and `public/manifest.json` before each upload; `npm run zip` refuses mismatched versions.
+
+## Disclaimer
+
+This project was built with the help of AI (Anthropic's Claude).
